@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/HeeChan/AndroidStudioProjects/TabMaking/app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="..\:/Users/HeeChan/AndroidStudioProjects/TabMaking/app/src/main/res/layout/item_layout_lr.xml" value="0.1585612968591692" />
+        <entry key="..\:/Users/HeeChan/AndroidStudioProjects/TabMaking/app/src/main/res/layout/item_layout_rl.xml" value="0.1585612968591692" />
         <entry key="..\:/Users/wsx02/AndroidStudioProjects/TabMaking/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/wsx02/AndroidStudioProjects/TabMaking/app/src/main/res/layout/fragment1.xml" value="0.2046875" />
         <entry key="..\:/Users/wsx02/AndroidStudioProjects/TabMaking/app/src/main/res/layout/fragment_1.xml" value="0.36614583333333334" />
