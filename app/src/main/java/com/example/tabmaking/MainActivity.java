@@ -4,9 +4,14 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 
@@ -18,6 +23,12 @@ public class MainActivity extends FragmentActivity{
 
     private RecyclerView recyclerView;
     private ItemAdapter itemAdapter;
+
+    //윤수 TAB 변수들 선언
+    FloatingActionButton plus;
+    FloatingActionButton myTeam;
+    private Animation fab_open, fab_close;
+    private Boolean isFabOpen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,14 +66,17 @@ public class MainActivity extends FragmentActivity{
             case 0:
                 mPager.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.INVISIBLE);
+                plus.setVisibility(View.VISIBLE);
                 break;
             case 1:
                 recyclerView.setVisibility(View.VISIBLE);
                 mPager.setVisibility(View.INVISIBLE);
+                plus.setVisibility(View.INVISIBLE);
                 break;
         }
     }
 
+    //TODO 여기다가 매칭 페이지랑 마이팀 페이지 버튼 Implement
     private void firstView() {
         //ViewPager2
         mPager = findViewById(R.id.viewpager);
@@ -83,7 +97,30 @@ public class MainActivity extends FragmentActivity{
                 }
             }
         });
+        //윤수 TAB
+        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+        fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
+
+        plus = (FloatingActionButton) findViewById(R.id.plus);
+        myTeam = (FloatingActionButton) findViewById(R.id.team_btn);
+        plus.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                anim();
+            }
+        });
+        myTeam.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                anim();
+                //TODO 내 팀 페이지 만들어서 연결
+                //Intent myTeamPage = new Intent(MainActivity.this, myTeamPageActivity.class);
+                //startActivity(myTeamPage);
+            }
+        });
     }
+
+    //TODO 여기다가 예약 페이지 만들기
     private void secondView() {
         recyclerView = findViewById(R.id.recycler_view);
         itemAdapter = new ItemAdapter();
@@ -100,6 +137,19 @@ public class MainActivity extends FragmentActivity{
         itemAdapter.notifyDataSetChanged();
         //애니메이션 실행
         recyclerView.startLayoutAnimation();
+    }
+
+    //TAB 눌렀을 때 애니메이션
+    private void anim() {
+        if (isFabOpen) {
+            myTeam.startAnimation(fab_close);
+            myTeam.setClickable(false);
+            isFabOpen = false;
+        } else {
+            myTeam.startAnimation(fab_open);
+            myTeam.setClickable(true);
+            isFabOpen = true;
+        }
     }
 }
 
